@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Teun Hoppenbrouwers ANR:751611">
+  <title>Numerical Simulations Assignment 2 presentation</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/solarized.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+  <h1 class="title">Numerical Simulations Assignment 2 presentation</h1>
+  <h2 class="author">Teun Hoppenbrouwers ANR:751611</h2>
+  <h3 class="date">UVT</h3>
+</section>
+
+<section><section id="introduction" class="titleslide slide level1"><h1>Introduction</h1></section><section id="question" class="slide level2">
+<h1>Question</h1>
+<p>Firm A (the &quot;Acquirer&quot;) is considering taking over firm T (the &quot;Target&quot;). It does not know firm T's value <span class="math inline">\(x\)</span>; it believes that this value, when firm T is controlled by its own management, is drawn from the cumulative distribution function <span class="math inline">\(F(x)=x(2-x)\)</span> on the support [0,1]. Firm T knows it own value. Firm T will be worth twice as much under firm A´s management than it is under its own management. Suppose that firm A bids <span class="math inline">\(y\)</span> to take over firm T. Then if T accepts A´s offer, A´s payoff is <span class="math inline">\(2x-y\)</span> and T's payoff is <span class="math inline">\(y\)</span>; if T rejects A's offer, A's payoff is <span class="math inline">\(0\)</span> and T's payoff is <span class="math inline">\(x\)</span>.</p>
+</section><section id="a" class="slide level2">
+<h1>A</h1>
+<p>Model this situation as a Bayesian game in which firm A chooses how much to offer and firm T decides the lowest offer to accept. Make sure to properly define the type spaces, action spaces, beliefs, strategies and payoff functions of the players.</p>
+</section><section id="a-1" class="slide level2">
+<h1>A</h1>
+<ul>
+<li>A has 1 type. Types of T are different firm values (<span class="math inline">\(x\)</span>) distributed over interval [0,1]. Action A: bids <span class="math inline">\(y\)</span> to take over T, <span class="math inline">\(y\)</span> distributed over <span class="math inline">\([ 0,\infty )\)</span>-</li>
+<li>Action T: Reject or accept <span class="math inline">\(y\)</span>, T will only accept if <span class="math inline">\(y\geq x\)</span></li>
+<li>A beliefs <span class="math inline">\(x\)</span> is drawn from CDF <span class="math inline">\(F(x)=x(2-x)\)</span>, T knows own <span class="math inline">\(x\)</span>.</li>
+<li>Strategy A <span class="math inline">\(\rightarrow\)</span> bid <span class="math inline">\(y\)</span> $[ 0,) $</li>
+<li>Strategy T <span class="math inline">\(\rightarrow\)</span> accept or reject <span class="math inline">\(y\)</span> ( Only accept <span class="math inline">\(y\)</span> if <span class="math inline">\(y\geq x\)</span> )</li>
+</ul>
+</section><section id="b" class="slide level2">
+<h1>B</h1>
+<ul>
+<li><p>What is the (unconditional) expected value of Firm T (under its own management)</p></li>
+<li><span class="math inline">\(E(x)=\int^{+\infty}_{-\infty} x*f(x)dx\)</span></li>
+<li><span class="math inline">\(F(x)=x(2-x)=x^2+2x\)</span></li>
+<li><span class="math inline">\(f(x)=F&#39;(x)=-2x+2\)</span></li>
+<li><span class="math inline">\(E(x)=\int_{0}^{1} x*(-2x+2)=\int_{0}^{1} -2x^2+2x\)</span></li>
+<li><p><span class="math inline">\(-2/3*1^3+1^2=1/3\)</span></p></li>
+</ul>
+</section><section id="c" class="slide level2">
+<h1>C</h1>
+<p>Find the Bayesian Nash equilibrium (equilibria?) of this game [Hint: <span class="math inline">\(E(x\mid x\leq y)=(\int_{0}^{y}xf(x)dx)/F(y)\)</span>, where <span class="math inline">\(f(x)=F&#39;(x)\)</span> is the probability density function of <span class="math inline">\(x\)</span>.]</p>
+</section><section id="c-1" class="slide level2">
+<h1>C</h1>
+<p>-firm value <span class="math inline">\(x\)</span> is distributed over [0,1] T will only accept <span class="math inline">\(y\)</span> if <span class="math inline">\(y \geq x\)</span>. - A can bid under or above 1. If bid is higher or equal than 1 firm T will always accept (1 is max possible firm value) - <span class="math inline">\(E(x\mid x\leq y)\)</span> is expected <span class="math inline">\(x\)</span> of firm that accept <span class="math inline">\(y\)</span> - <span class="math inline">\(E(x\mid x\leq y)=(\int_{0}^{y}xf(x)dx)/F(y)\)</span> - <span class="math inline">\(f(x)=-2x+2\)</span> - <span class="math inline">\(\int_{0}^{y}x*(-2x+2)=\int_{0}^{y}-2x^2+2x\)</span> - <span class="math inline">\(-(2/3)y^3+y^2\)</span> - <span class="math inline">\(F(y)=y(2-y)\)</span> - <span class="math inline">\(E(x\mid x\leq y)= (-(2/3)y^3+y^2)/(-y^2+2y)\)</span> - the value above is the expected value of a firm if it accepts <span class="math inline">\(y\)</span> when <span class="math inline">\(y \leq 1\)</span>, if <span class="math inline">\(y &gt; 1\)</span> all types will accept. Expected value of all types is 1/3 (see Question B) - payoff A if <span class="math inline">\(y \leq 1\)</span> \ <span class="math inline">\(2x-y=2*(-(2/3)y^3+y^2)/(-y^2+2y)-y\)</span> <span class="math inline">\(2*(-(2/3)y^3+y^2)/(-y^2+2y)-y \leq 0\)</span> on interval [0,1] - payoff A if <span class="math inline">\(y&gt;1\)</span> - <span class="math inline">\(2*(1/3)-y&lt;0\)</span> - Nash equilibrium is for A to bid 0.</p>
+</section></section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
